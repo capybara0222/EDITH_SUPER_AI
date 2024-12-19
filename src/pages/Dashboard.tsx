@@ -18,7 +18,14 @@ const Dashboard = () => {
           user_id: initData.user.id,
           refer_code: "string",
         })
-        .then((response) => console.log("Success", response.data))
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("Success", response.data)
+          }
+          else {
+            console.log("Error", response.data)
+          }
+        })
         .catch((error) => console.log("Error", error));
     } else {
       console.log("User data is not available");
