@@ -4,7 +4,6 @@ import { retrieveLaunchParams } from "@telegram-apps/sdk";
 
 const Dashboard = () => {
   const { initData } = retrieveLaunchParams();
-  // const userId = extractUserId(initData);
   const [offset, setOffset] = useState(0);
   const radius = 40;
   const stroke = 8;
@@ -15,7 +14,7 @@ const Dashboard = () => {
     if (initData && initData.user) {
       console.log(initData.user);
       await axios
-        .post("https://backend.url/api/user", {
+        .post("https://b56c-162-251-62-70.ngrok-free.app/api/user", {
           user_id: initData.user.id,
           refer_code: "string",
         })
@@ -336,9 +335,7 @@ const Dashboard = () => {
                 Dashboard
               </span>
             </button>
-            <div className="absolute top-0">
-              <img src="/tab.png" className="h-[] w-[80px]" />
-            </div>
+            <img src="/button.svg" className="absolute w-full h-full top-1/2" />
           </div>
           <button className="flex flex-col items-center justify-center gap-1 px-5 border-none outline-none focus:outline-none group">
             <img src="/friends.png" className="" />
