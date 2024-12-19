@@ -13,6 +13,7 @@ const Dashboard = () => {
   const fetchUser = async () => {
 
     if (initData && initData.user) {
+      console.log(initData.user);
       await axios
         .post("https://backend.url/api/user", {
           user_id: initData.user.id,
@@ -324,9 +325,9 @@ const Dashboard = () => {
         </div>
       </main>
       <footer className="fixed bottom-0 left-0 right-0 flex justify-center h-20 font-aeonik">
-        <div className="w-full max-w-screen-md px-5 border-t-2 border-borderMain bg-[#131313] flex items-center justify-between py-5">
+        <div className="w-full max-w-screen-md px-5 border-t-2 border-borderMain bg-[#131313] flex items-center justify-between">
           <div className="relative">
-            <button className="flex flex-col items-center justify-center gap-1 px-5 border-none outline-none focus:outline-none group">
+            <button className="flex flex-col items-center justify-center gap-1 p-5 border-none outline-none focus:outline-none group">
               <img
                 src="/dashboard.png"
                 className="w-auto h-[18px]"
@@ -336,7 +337,7 @@ const Dashboard = () => {
               </span>
             </button>
             <div className="absolute top-0">
-              <img src="/tab.png" className="w-full h-full" />
+              <img src="/tab.png" className="h-[] w-[80px]" />
             </div>
           </div>
           <button className="flex flex-col items-center justify-center gap-1 px-5 border-none outline-none focus:outline-none group">
