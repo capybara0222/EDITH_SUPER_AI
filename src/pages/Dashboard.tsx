@@ -50,12 +50,12 @@ const Dashboard = () => {
           </button>
         </div>
       </header>
-      <main className="w-full min-h-screen bg-bgMain font-aeonik">
+      <main className="w-full min-h-screen bg-bgMain font-aeonik homeBackground">
         <div className="flex flex-col p-5">
           <div className="flex flex-col gap-6 pt-3 mt-20 text-left pb-9">
             <h3 className="text-base text-white text-medium">Statistics</h3>
             <div className="grid grid-cols-2 gap-[5px]">
-              <div className="border-[#FFFFFF14] border rounded-xl p-3 flex flex-col justify-between items-start h-[77px] bg-gradient-to-bl from-[#131313] via-[#181818] to-[#404040] relative">
+              <div className="border-[#FFFFFF14] border rounded-xl p-3 flex flex-col justify-between items-start h-[77px] bg-[#FFFFFF12]  relative overflow-hidden">
                 <p className="text-sm text-[#878787] leading-none">
                   Total Points
                 </p>
@@ -65,8 +65,9 @@ const Dashboard = () => {
                   </span>
                   <img src="/coin.png" className="w-5 h-5" />
                 </div>
+                <div className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
               </div>
-              <div className="border-[#FFFFFF14] border rounded-xl p-3 flex flex-col justify-between items-start h-[77px] bg-gradient-to-br from-[#131313] via-[#131313] to-[#404040] relative">
+              <div className="border-[#FFFFFF14] border rounded-xl p-3 flex flex-col justify-between items-start h-[77px] bg-[#FFFFFF12]  relative overflow-hidden">
                 <p className="text-sm text-[#878787] leading-none">
                   Referrals Count
                 </p>
@@ -75,9 +76,10 @@ const Dashboard = () => {
                     52
                   </span>
                 </div>
+                <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
               </div>
-              <div className="border-[#FFFFFF14] border rounded-xl flex justify-between items-start h-[77px] bg-gradient-to-bl from-[#131313] via-[#131313] to-[#404040] relative">
-                <div className="flex flex-col justify-between h-full p-3">
+              <div className="border-[#FFFFFF14] border rounded-xl flex justify-between items-start h-[77px] bg-[#FFFFFF12]  relative overflow-hidden">
+                <div className="flex flex-col justify-between h-full p-3 pr-0">
                   <p className="text-sm text-[#878787] leading-none text-nowrap">
                     Current Level
                   </p>
@@ -85,7 +87,7 @@ const Dashboard = () => {
                     24
                   </p>
                 </div>
-                <div className="p-3">
+                <div className="p-3 pl-0">
                   <div className="relative w-[53px] h-[53px]">
                     <svg
                       className="absolute transform"
@@ -122,8 +124,9 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
+                <div className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
               </div>
-              <div className="border-[#FFFFFF14] border rounded-xl flex justify-between items-start h-[77px] bg-gradient-to-br from-[#131313] via-[#131313] to-[#404040] relative">
+              <div className="border-[#FFFFFF14] border rounded-xl flex justify-between items-start h-[77px] bg-[#FFFFFF12]  relative overflow-hidden">
                 <div className="flex flex-col justify-between h-full p-3">
                   <p className="text-sm text-[#878787] leading-none text-nowrap">
                     Rank Status
@@ -132,9 +135,10 @@ const Dashboard = () => {
                     Elite lll
                   </p>
                 </div>
-                <div className="pr-3">
+                <div className="absolute top-0 right-3">
                   <img src="/medal.png" className="w-[60px] h-auto" />
                 </div>
+                <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
               </div>
             </div>
           </div>

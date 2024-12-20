@@ -1,6 +1,6 @@
 const Tasks = () => {
   return (
-    <main className="w-full min-h-screen bg-bgMain font-aeonik text-[#878787]">
+    <main className="w-full min-h-screen bg-bgMain font-aeonik text-[#878787] homeBackground">
       <div className="flex flex-col p-5">
         <div className="flex flex-col gap-6 pt-3 text-left pb-9">
           <h3 className="text-base text-[#FCFCFC] text-medium">Statistics</h3>
