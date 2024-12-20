@@ -1,41 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { retrieveLaunchParams } from "@telegram-apps/sdk";
 
 const Dashboard = () => {
-  const { initData } = retrieveLaunchParams();
   const [offset, setOffset] = useState(0);
   const radius = 40;
   const stroke = 8;
   const circumference = 2 * Math.PI * radius;
 
-  const fetchUser = async () => {
-
-    if (initData && initData.user) {
-      console.log(initData.user);
-      await axios
-        .post("https://b56c-162-251-62-70.ngrok-free.app/api/user", {
-          user_id: initData.user.id,
-          refer_code: "string",
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            console.log("Success", response.data)
-          }
-          else {
-            console.log("Error", response.data)
-          }
-        })
-        .catch((error) => console.log("Error", error));
-    } else {
-      console.log("User data is not available");
-    }
-  };
-
   useEffect(() => {
     const newOffset = (60 / 100) * circumference;
     setOffset(newOffset);
-    fetchUser();
   }, []);
 
   return (
@@ -174,7 +147,7 @@ const Dashboard = () => {
                 <div className="p-[1px] bg-gradient-to-t from-white to-transparent rounded-full">
                   <div className="relative p-6 rounded-full bg-gradient-to-t from-[#585858] to-[#101010]">
                     <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                      <span className="font-bold leading-none text-white ext-base ">
+                      <span className="font-bold leading-none text-white text-base ">
                         52
                       </span>
                       <span className="font-medium leading-none text-white text-[11px]">
@@ -226,7 +199,7 @@ const Dashboard = () => {
                 <div className="p-[1px] bg-gradient-to-t from-white to-transparent rounded-full">
                   <div className="relative p-6 rounded-full bg-gradient-to-t from-[#585858] to-[#101010]">
                     <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                      <span className="font-bold leading-none text-white ext-base ">
+                      <span className="font-bold leading-none text-white text-base ">
                         52
                       </span>
                       <span className="font-medium leading-none text-white text-[11px]">
@@ -252,7 +225,7 @@ const Dashboard = () => {
                 <div className="p-[1px] bg-gradient-to-t from-white to-transparent rounded-full">
                   <div className="relative p-6 rounded-full bg-gradient-to-t from-[#585858] to-[#101010]">
                     <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                      <span className="font-bold leading-none text-white ext-base ">
+                      <span className="font-bold leading-none text-white text-base ">
                         52
                       </span>
                       <span className="font-medium leading-none text-white text-[11px]">
@@ -278,7 +251,7 @@ const Dashboard = () => {
                 <div className="p-[1px] bg-gradient-to-t from-white to-transparent rounded-full">
                   <div className="relative p-6 rounded-full bg-gradient-to-t from-[#585858] to-[#101010]">
                     <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                      <span className="font-bold leading-none text-white ext-base ">
+                      <span className="font-bold leading-none text-white text-base ">
                         52
                       </span>
                       <span className="font-medium leading-none text-white text-[11px]">
@@ -304,7 +277,7 @@ const Dashboard = () => {
                 <div className="p-[1px] bg-gradient-to-t from-white to-transparent rounded-full">
                   <div className="relative p-6 rounded-full bg-gradient-to-t from-[#585858] to-[#101010]">
                     <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                      <span className="font-bold leading-none text-white ext-base ">
+                      <span className="font-bold leading-none text-white text-base ">
                         52
                       </span>
                       <span className="font-medium leading-none text-white text-[11px]">
@@ -330,30 +303,6 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
-      <footer className="fixed bottom-0 left-0 right-0 flex justify-center h-20 font-aeonik">
-        <div className="w-full max-w-screen-md px-5 border-t-2 border-borderMain bg-[#131313] flex items-center justify-between">
-          <div className="relative">
-            <button className="flex flex-col items-center justify-center gap-1 p-5 border-none outline-none focus:outline-none group">
-              <img
-                src="/dashboard.png"
-                className="w-auto h-[18px]"
-              />
-              <span className="text-[#93969D] text-xs group-hover:text-white bg-transparent">
-                Dashboard
-              </span>
-            </button>
-            <img src="/button.svg" className="absolute w-full h-full top-1/2" />
-          </div>
-          <button className="flex flex-col items-center justify-center gap-1 px-5 border-none outline-none focus:outline-none group">
-            <img src="/friends.png" className="" />
-            <span className="text-[#93969D] text-xs group-hover:text-white">Friends</span>
-          </button>
-          <button className="flex flex-col items-center justify-center gap-1 px-5 border-none outline-none focus:outline-none group">
-            <img src="/task.png" className="" />
-            <span className="text-[#93969D] text-xs group-hover:text-white">Tasks & Earn</span>
-          </button>
-        </div>
-      </footer>
     </>
   );
 };
