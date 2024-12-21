@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 
 const Tabs = () => {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 flex justify-center h-20 font-aeonik">
+    <footer className="fixed bottom-0 left-0 right-0 flex justify-center h-20 font-aeonik z-50">
       <div className="w-full max-w-screen-md px-5 border-t-2 border-borderMain bg-[#131313] flex items-center justify-between">
         <NavLink to={'/dashboard'}>
           {({ isActive }) => (
@@ -69,8 +69,8 @@ const Tabs = () => {
                 className={`${isActive ? 'fill-[#FFFFFF] stroke-[#FFFFFF]' : 'fill-transparent group-hover:fill-[#FFFFFF] group-hover:stroke-[#FFFFFF] stroke-[#93969D]'} transition-colors duration-200 absolute left-1/2 -translate-x-1/2 top-2 -translate-y-1/2`}
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g id="SVGRepo_bgCarrier" stroke-width="0" />
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                <g id="SVGRepo_bgCarrier" strokeWidth="0" />
+                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
                 <g id="SVGRepo_iconCarrier">
                   <path d="M2.49954 9H21.4995M9.99954 3L7.99954 9L11.9995 20.5L15.9995 9L13.9995 3M12.6141 20.2625L21.5727 9.51215C21.7246 9.32995 21.8005 9.23885 21.8295 9.13717C21.8551 9.04751 21.8551 8.95249 21.8295 8.86283C21.8005 8.76114 21.7246 8.67005 21.5727 8.48785L17.2394 3.28785C17.1512 3.18204 17.1072 3.12914 17.0531 3.09111C17.0052 3.05741 16.9518 3.03238 16.8953 3.01717C16.8314 3 16.7626 3 16.6248 3H7.37424C7.2365 3 7.16764 3 7.10382 3.01717C7.04728 3.03238 6.99385 3.05741 6.94596 3.09111C6.89192 3.12914 6.84783 3.18204 6.75966 3.28785L2.42633 8.48785C2.2745 8.67004 2.19858 8.76114 2.16957 8.86283C2.144 8.95249 2.144 9.04751 2.16957 9.13716C2.19858 9.23885 2.2745 9.32995 2.42633 9.51215L11.385 20.2625C11.596 20.5158 11.7015 20.6424 11.8279 20.6886C11.9387 20.7291 12.0603 20.7291 12.1712 20.6886C12.2975 20.6424 12.4031 20.5158 12.6141 20.2625Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </g>

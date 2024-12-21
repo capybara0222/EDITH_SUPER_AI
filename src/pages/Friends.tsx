@@ -38,7 +38,7 @@ const Friends = () => {
                     <PiCopyFill className="text-xs text-[#FFFFFF]" />
                   </button>
                 </div>
-                <button className="bg-[#FFFFFF] border border-[#FFFFFF]/20 text-[#010101] font-medium text-sm h-7 w-[65px]">
+                <button className="bg-[#FFFFFF] border border-[#FFFFFF]/20 text-[#010101] font-medium text-sm h-7 w-[65px] hover:border-[#FFFFFF]/20 focus:outline-none">
                   Share
                 </button>
               </div>
