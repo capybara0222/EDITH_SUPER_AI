@@ -29,7 +29,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       });
 
       await axios
-        .post(`${import.meta.env.BACKEND_URL}/api/user`, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
           user_id: initData.user.id,
           refer_code: "string",
         })
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
       await axios
-        .post(`${import.meta.env.BACKEND_URL}/api/acitivites`, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/acitivites`, {
           user_id: initData.user.id,
           refer_code: "string",
         })
