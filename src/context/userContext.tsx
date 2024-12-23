@@ -29,7 +29,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       });
 
       await axios
-        .post("https://b56c-162-251-62-70.ngrok-free.app/api/user", {
+        .post(`${import.meta.env.BACKEND_URL}/api/user`, {
           user_id: initData.user.id,
           refer_code: "string",
         })
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
       await axios
-        .post("https://b56c-162-251-62-79.ngrok-free.app/api/activities", {
+        .post(`${import.meta.env.BACKEND_URL}/api/acitivites`, {
           user_id: initData.user.id,
           refer_code: "string",
         })
