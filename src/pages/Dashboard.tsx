@@ -52,10 +52,10 @@ const Dashboard = () => {
               <div className="flex items-center shrink-0">
                 <span className="text-xs text-fontMain">
                   {
-                    userData?.level ? `${levels[userData?.level].min.toString()}` : '0'
+                    userData?.level ? `${levels[userData.level].min.toString()}` : '0'
                   }
                 </span>
-                <span className="text-xs text-[#C5C5C5]">{`/ ${userData?.level ? `${levels[userData?.level].min.toString()}` : '0'}`}</span>
+                <span className="text-xs text-[#C5C5C5]">{`/ ${userData?.level ? `${levels[userData.level].min.toString()}` : '0'}`}</span>
               </div>
             </div>
           </div>

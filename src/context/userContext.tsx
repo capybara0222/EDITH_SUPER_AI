@@ -46,7 +46,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/acitivites`, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/acitivity`, {
           user_id: initData.user.id,
           refer_code: "string",
         })
