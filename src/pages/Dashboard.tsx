@@ -158,11 +158,11 @@ const Dashboard = () => {
                     Rank Status
                   </p>
                   <p className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    {userData?.level ? `${levels[userData.level].name}` : `${levels[0].name}`}
+                    {userData?.level ? `${levels[userData.level]?.name}` : `${levels[0].name}`}
                   </p>
                 </div>
                 <div className="absolute top-0 right-3">
-                  <img src={`/levels/${userData?.level ? `${levels[userData.level].name}` : `${levels[0].name}`}.png`} className="w-[60px] h-auto" />
+                  <img src={`/levels/${userData?.level ? `${levels[userData.level]?.name}` : `${levels[0].name}`}.png`} className="w-[60px] h-auto" />
                 </div>
                 <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
               </div>
