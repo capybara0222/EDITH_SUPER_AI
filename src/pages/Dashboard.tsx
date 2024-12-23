@@ -1,14 +1,24 @@
 import { useEffect, useState } from "react";
+import { useUser } from "../context/userContext";
+import { levels } from "../libs/levels";
+import LatestActivity from "../components/LatestActivity";
 
 const Dashboard = () => {
+  const { userProfile, userData, activities } = useUser();
   const [offset, setOffset] = useState(0);
   const radius = 40;
   const stroke = 8;
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
-    const newOffset = (60 / 100) * circumference;
-    setOffset(newOffset);
+    if (userData?.level ) {
+      const totalProgress = levels[userData.level].max - levels[userData.level].min;
+      const currentProgress = userData.points - levels[userData.level].min;
+      const newOffset = (currentProgress / totalProgress) * circumference;
+      setOffset(newOffset);
+    } else {
+      setOffset(0);
+    }
   }, []);
 
   return (
@@ -18,19 +28,19 @@ const Dashboard = () => {
           <div className="shrink-0">
             <img
               src="/avatar.png"
-              alt="Agent Smith"
+              alt={`${userProfile?.fullname}`}
               className="w-12 h-12 rounded-full"
             />
           </div>
           <div className="flex flex-col items-start justify-between flex-1 h-full min-w-[130px]">
             <div className="flex gap-1.5 items-start w-full shrink-0">
               <span className="text-sm font-bold leading-none text-fontMain">
-                Agent Smith
+                {userProfile?.fullname}
               </span>
               <div className="flex">
                 <img src="/left.png" className="w-auto h-5" />
                 <span className="font-medium text-sm text-[#FFAE4B] leading-none">
-                  24
+                  {userData?.level}
                 </span>
                 <img src="/right.png" className="w-auto h-5" />
               </div>
@@ -40,8 +50,12 @@ const Dashboard = () => {
                 <div className="absolute w-[66.6%] top-0 left-0 h-1.5 bg-[#FFFFFF] rounded-full"></div>
               </div>
               <div className="flex items-center shrink-0">
-                <span className="text-xs text-fontMain">2,000</span>
-                <span className="text-xs text-[#C5C5C5]">/3000</span>
+                <span className="text-xs text-fontMain">
+                  {
+                    userData?.level ? `${levels[userData?.level].min.toString()}` : '0'
+                  }
+                </span>
+                <span className="text-xs text-[#C5C5C5]">{`/ ${userData?.level ? `${levels[userData?.level].min.toString()}` : '0'}`}</span>
               </div>
             </div>
           </div>
@@ -61,7 +75,7 @@ const Dashboard = () => {
                 </p>
                 <div className="flex items-center gap-1.5">
                   <span className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    2000
+                    {userData?.points}
                   </span>
                   <img src="/coin.png" className="w-5 h-5" />
                 </div>
@@ -73,7 +87,7 @@ const Dashboard = () => {
                 </p>
                 <div className="flex items-center gap-1.5">
                   <span className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    52
+                    {userData?.referralCount}
                   </span>
                 </div>
                 <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
@@ -84,7 +98,7 @@ const Dashboard = () => {
                     Current Level
                   </p>
                   <p className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    24
+                    {userData?.level}
                   </p>
                 </div>
                 <div className="p-3 pl-0">
@@ -132,7 +146,7 @@ const Dashboard = () => {
                       />
                     </svg>
                     <div className="absolute text-xs font-bold text-[#FFFFFF] transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                      {60}%
+                      {(offset / circumference) * 100}%
                     </div>
                   </div>
                 </div>
@@ -144,11 +158,11 @@ const Dashboard = () => {
                     Rank Status
                   </p>
                   <p className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    Elite lll
+                    {userData?.level ? `${levels[userData.level].name}` : `${levels[0].name}`}
                   </p>
                 </div>
                 <div className="absolute top-0 right-3">
-                  <img src="/medal.png" className="w-[60px] h-auto" />
+                  <img src={`/levels/${userData?.level ? `${levels[userData.level].name}` : `${levels[0].name}`}.png`} className="w-[60px] h-auto" />
                 </div>
                 <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
               </div>
@@ -159,209 +173,9 @@ const Dashboard = () => {
               Latest Activity
             </h3>
             <div className="grid grid-cols-1 gap-2.5">
-              <div className="bg-gradient-to-b from-[#202020] to-[#272727] p-[1px] rounded-[20px]">
-                <div className="rounded-[19px] bg-[#101010] p-4 flex items-stretch justify-between gap-3">
-                  <div className="p-[1px] bg-gradient-to-b from-[#101010] to-[#FFFFFF] via-[#444444] rounded-full">
-                    <div className="relative p-6 rounded-full bg-gradient-to-b from-[#101010] to-[#585858] via-[#1b1b1b]">
-                      <img src="/points.png" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-9 h-auto" />
-                      <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <span className="font-bold leading-none text-[#FFFFFF] text-base ">
-                          52
-                        </span>
-                        <span className="font-medium leading-none text-[#FFFFFF] text-[11px]">
-                          Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-between">
-                    <span className="text-base font-medium text-[#FFFFFF]">
-                      Referral
-                    </span>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-start">
-                    <p className="text-xs text-[#FFFFFF88]">18th Dec, 12:08 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-b from-[#202020] to-[#272727] p-[1px] rounded-[20px]">
-                <div className="rounded-[19px] bg-[#101010] p-4 flex items-stretch justify-between gap-3">
-                  <div className="p-[1px] bg-gradient-to-b from-[#101010] to-[#FFFFFF] via-[#444444] rounded-full">
-                    <div className="relative p-6 rounded-full bg-gradient-to-b from-[#101010] to-[#585858] via-[#1b1b1b]">
-                      <img src="/points.png" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-9 h-auto" />
-                      <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <span className="font-bold leading-none text-[#FFFFFF] text-base ">
-                          52
-                        </span>
-                        <span className="font-medium leading-none text-[#FFFFFF] text-[11px]">
-                          Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-between">
-                    <span className="text-base font-medium text-[#FFFFFF]">
-                      Referral
-                    </span>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-start">
-                    <p className="text-xs text-[#FFFFFF88]">18th Dec, 12:08 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-b from-[#202020] to-[#272727] p-[1px] rounded-[20px]">
-                <div className="rounded-[19px] bg-[#101010] p-4 flex items-stretch justify-between gap-3">
-                  <div className="p-[1px] bg-gradient-to-b from-[#101010] to-[#FFFFFF] via-[#444444] rounded-full">
-                    <div className="relative p-6 rounded-full bg-gradient-to-b from-[#101010] to-[#585858] via-[#1b1b1b]">
-                      <img src="/points.png" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-9 h-auto" />
-                      <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <span className="font-bold leading-none text-[#FFFFFF] text-base ">
-                          52
-                        </span>
-                        <span className="font-medium leading-none text-[#FFFFFF] text-[11px]">
-                          Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-between">
-                    <span className="text-base font-medium text-[#FFFFFF]">
-                      Referral
-                    </span>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">In progress</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#F39F3D]"></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-start">
-                    <p className="text-xs text-[#FFFFFF88]">18th Dec, 12:08 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-b from-[#202020] to-[#272727] p-[1px] rounded-[20px]">
-                <div className="rounded-[19px] bg-[#101010] p-4 flex items-stretch justify-between gap-3">
-                  <div className="p-[1px] bg-gradient-to-b from-[#101010] to-[#FFFFFF] via-[#444444] rounded-full">
-                    <div className="relative p-6 rounded-full bg-gradient-to-b from-[#101010] to-[#585858] via-[#1b1b1b]">
-                      <img src="/points.png" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-9 h-auto" />
-                      <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <span className="font-bold leading-none text-[#FFFFFF] text-base ">
-                          52
-                        </span>
-                        <span className="font-medium leading-none text-[#FFFFFF] text-[11px]">
-                          Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-between">
-                    <span className="text-base font-medium text-[#FFFFFF]">
-                      Referral
-                    </span>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">In progress</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#F39F3D]"></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-start">
-                    <p className="text-xs text-[#FFFFFF88]">18th Dec, 12:08 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-b from-[#202020] to-[#272727] p-[1px] rounded-[20px]">
-                <div className="rounded-[19px] bg-[#101010] p-4 flex items-stretch justify-between gap-3">
-                  <div className="p-[1px] bg-gradient-to-b from-[#101010] to-[#FFFFFF] via-[#444444] rounded-full">
-                    <div className="relative p-6 rounded-full bg-gradient-to-b from-[#101010] to-[#585858] via-[#1b1b1b]">
-                      <img src="/points.png" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-9 h-auto" />
-                      <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <span className="font-bold leading-none text-[#FFFFFF] text-base ">
-                          52
-                        </span>
-                        <span className="font-medium leading-none text-[#FFFFFF] text-[11px]">
-                          Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-between">
-                    <span className="text-base font-medium text-[#FFFFFF]">
-                      Referral
-                    </span>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">In progress</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#F39F3D]"></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-start">
-                    <p className="text-xs text-[#FFFFFF88]">18th Dec, 12:08 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-b from-[#202020] to-[#272727] p-[1px] rounded-[20px]">
-                <div className="rounded-[19px] bg-[#101010] p-4 flex items-stretch justify-between gap-3">
-                  <div className="p-[1px] bg-gradient-to-b from-[#101010] to-[#FFFFFF] via-[#444444] rounded-full">
-                    <div className="relative p-6 rounded-full bg-gradient-to-b from-[#101010] to-[#585858] via-[#1b1b1b]">
-                      <img src="/points.png" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-9 h-auto" />
-                      <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <span className="font-bold leading-none text-[#FFFFFF] text-base ">
-                          52
-                        </span>
-                        <span className="font-medium leading-none text-[#FFFFFF] text-[11px]">
-                          Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-between">
-                    <span className="text-base font-medium text-[#FFFFFF]">
-                      Referral
-                    </span>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">In progress</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#F39F3D]"></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-start">
-                    <p className="text-xs text-[#FFFFFF88]">18th Dec, 12:08 PM</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-b from-[#202020] to-[#272727] p-[1px] rounded-[20px]">
-                <div className="rounded-[19px] bg-[#101010] p-4 flex items-stretch justify-between gap-3">
-                  <div className="p-[1px] bg-gradient-to-b from-[#101010] to-[#FFFFFF] via-[#444444] rounded-full">
-                    <div className="relative p-6 rounded-full bg-gradient-to-b from-[#101010] to-[#585858] via-[#1b1b1b]">
-                      <img src="/points.png" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-9 h-auto" />
-                      <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                        <span className="font-bold leading-none text-[#FFFFFF] text-base ">
-                          52
-                        </span>
-                        <span className="font-medium leading-none text-[#FFFFFF] text-[11px]">
-                          Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-between">
-                    <span className="text-base font-medium text-[#FFFFFF]">
-                      Referral
-                    </span>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">In progress</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#F39F3D]"></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-start">
-                    <p className="text-xs text-[#FFFFFF88]">18th Dec, 12:08 PM</p>
-                  </div>
-                </div>
-              </div>
+              {
+                activities.map((item) => <LatestActivity key={item.created_at} item={item} />)
+              }
             </div>
           </div>
         </div>

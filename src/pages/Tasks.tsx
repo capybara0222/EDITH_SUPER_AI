@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Modal from "../components/Modal";
 
 const Tasks = () => {
   const [typeTask, setTypeTask] = useState<number>(0);
@@ -213,27 +214,9 @@ const Tasks = () => {
           </div>
         </div>
       </div>
-      {isOpen && (
-        <div
-          className="fixed top-0 left-0 bg-[#000000b3] w-full h-screen flex items-center justify-center"
-          onClick={() => setIsOpen(false)} // Close modal on click anywhere
-        >
-          <div
-            className="rounded-lg text-center relative"
-            onClick={(e) => e.stopPropagation()} // Prevent click inside modal from closing it
-          >
-            <div className="w-64 h-64 rounded-full blur-xl" style={{
-              backgroundImage: 'radial-gradient(#FFD420, #FFD42000)',
-            }}></div>
-            <img src="/bigcoin.png" className="w-[170px] h-[170px] absolute top-[140px] -translate-y-1/2 left-1/2 -translate-x-1/2" alt="Big Coin" />
-            <span className="block mt-4 text-2xl font-bold font-aeonik text-[#FFE047]">
-              Earned 50 Points
-            </span>
-          </div>
-        </div>
-      )}
+      {isOpen && <Modal closeModal={() => setIsOpen(false)} />}
     </main>
-  )
-}
+  );
+};
 
-export default Tasks  
+export default Tasks;  
