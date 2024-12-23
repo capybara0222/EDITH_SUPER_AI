@@ -174,7 +174,7 @@ const Dashboard = () => {
             </h3>
             <div className="grid grid-cols-1 gap-2.5">
               {
-                activities.map((item) => <LatestActivity key={item.created_at} item={item} />)
+                activities?.map((item) => <LatestActivity key={item.created_at} item={item} />)
               }
             </div>
           </div>

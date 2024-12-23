@@ -1,7 +1,7 @@
 export interface UserContextTypes {
   userProfile: UserProfile | undefined;
   userData: UserData | undefined;
-  activities: Activity[];
+  activities: Activity[] | undefined;
 }
 
 export interface UserProfile {
