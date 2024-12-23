@@ -4,11 +4,12 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Friends from './pages/Friends'
 import Tasks from './pages/Tasks'
 import Layouts from './components/Layouts'
+import { UserProvider } from './context/userContext'
 
 function App() {
 
   return (
-    <>
+    <UserProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layouts />}>
@@ -19,7 +20,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </UserProvider>
   )
 }
 
