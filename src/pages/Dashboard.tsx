@@ -11,8 +11,7 @@ const Dashboard = () => {
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
-    if (userData?.level ) {
-      console.log(levels[userData.level])
+    if (userData?.level && levels[userData.level]) {
       const totalProgress = levels[userData.level].max - levels[userData.level].min;
       const currentProgress = userData.points - levels[userData.level].min;
       const newOffset = (currentProgress / totalProgress) * circumference;
@@ -53,10 +52,10 @@ const Dashboard = () => {
               <div className="flex items-center shrink-0">
                 <span className="text-xs text-fontMain">
                   {
-                    userData?.level ? `${levels[userData.level].min.toString()}` : '0'
+                    userData?.level && levels[userData.level] ? `${levels[userData.level].min.toString()}` : '0'
                   }
                 </span>
-                <span className="text-xs text-[#C5C5C5]">{`/ ${userData?.level ? `${levels[userData.level].min.toString()}` : '0'}`}</span>
+                <span className="text-xs text-[#C5C5C5]">{`/ ${userData?.level && levels[userData.level] ? `${levels[userData.level].min.toString()}` : '0'}`}</span>
               </div>
             </div>
           </div>
@@ -159,11 +158,11 @@ const Dashboard = () => {
                     Rank Status
                   </p>
                   <p className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    {userData?.level ? `${levels[userData.level].name}` : `${levels[0].name}`}
+                    {userData?.level && levels[userData.level] ? `${levels[userData.level].name}` : `${levels[0].name}`}
                   </p>
                 </div>
                 <div className="absolute top-0 right-3">
-                  <img src={`/levels/${userData?.level ? `${levels[userData.level].name}` : `${levels[0].name}`}.png`} className="w-[60px] h-auto" />
+                  <img src={`/levels/${userData?.level && levels[userData.level] ? `${levels[userData.level].name}` : `${levels[0].name}`}.png`} className="w-[60px] h-auto" />
                 </div>
                 <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
               </div>
