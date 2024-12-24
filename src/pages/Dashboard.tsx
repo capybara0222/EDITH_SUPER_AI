@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../context/userContext";
 import { levels } from "../libs/levels";
-// import LatestActivity from "../components/LatestActivity";
+import LatestActivity from "../components/LatestActivity";
 
 const Dashboard = () => {
-  const { userData } = useUser();
+  const { userData, activities } = useUser();
   const [offset, setOffset] = useState(0);
   const radius = 40;
   const stroke = 8;
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
-    if (userData?.level ) {
+    if (userData?.level) {
       const totalProgress = levels[userData.level]?.max - levels[userData.level]?.min;
       const currentProgress = userData.points - levels[userData.level]?.min;
       const newOffset = (currentProgress / totalProgress) * circumference;
@@ -175,7 +175,7 @@ const Dashboard = () => {
               Latest Activity
             </h3>
             <div className="grid grid-cols-1 gap-2.5">
-              
+              {activities?.map((item, index) => <LatestActivity key={index} item={item} />)}
             </div>
           </div>
         </div>
