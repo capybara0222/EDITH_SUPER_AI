@@ -42,7 +42,7 @@ const Dashboard = () => {
               <div className="flex">
                 <img src="/left.png" className="w-auto h-5" />
                 <span className="font-medium text-sm text-[#FFAE4B] leading-none">
-                  {/* {userData?.level} */}
+                  {userData?.level}
                 </span>
                 <img src="/right.png" className="w-auto h-5" />
               </div>
@@ -54,7 +54,7 @@ const Dashboard = () => {
               <div className="flex items-center shrink-0">
                 <span className="text-xs text-fontMain">
                   {
-                    // userData?.level ? `${levels[userData?.level].min.toString()}` : '0'
+                    userData?.level ? `${levels[userData?.level].min.toString()}` : '0'
                   }
                 </span>
                 {/* <span className="text-xs text-[#C5C5C5]">{`/ ${userData?.level ? `${levels[userData?.level].min.toString()}` : '0'}`}</span> */}
