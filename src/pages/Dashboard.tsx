@@ -11,6 +11,10 @@ const Dashboard = () => {
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
+    console.log("userData", userData)
+    console.log("userProfile", userProfile)
+    console.log("activity", activities)
+
     if (userData?.level) {
       const totalProgress = levels[userData.level]?.max - levels[userData.level]?.min;
       const currentProgress = userData.points - levels[userData.level]?.min;
