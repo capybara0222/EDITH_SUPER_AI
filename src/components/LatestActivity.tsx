@@ -1,7 +1,7 @@
 import moment from "moment"
 import { Activity } from "../libs/types"
 
-const LatestActivity = ({item}: {item: Activity}) => {
+const LatestActivity = ({ item }: { item: Activity }) => {
   return (
     <div className="bg-gradient-to-b from-[#202020] to-[#272727] p-[1px] rounded-[20px]">
       <div className="rounded-[19px] bg-[#101010] p-4 flex items-stretch justify-between gap-3">
@@ -10,7 +10,7 @@ const LatestActivity = ({item}: {item: Activity}) => {
             <img src="/points.png" className="absolute h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-9" />
             <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
               <span className="font-bold leading-none text-[#FFFFFF] text-base ">
-                {item?.points}
+                {item?.points || 0}
               </span>
               <span className="font-medium leading-none text-[#FFFFFF] text-[11px]">
                 Points
@@ -28,7 +28,9 @@ const LatestActivity = ({item}: {item: Activity}) => {
           </div>
         </div>
         <div className="flex flex-col justify-start">
-          <p className="text-xs text-[#FFFFFF88]">{moment(item?.created_at).format('Do MMM, h:mm A')}</p>
+          <p className="text-xs text-[#FFFFFF88]">
+            {moment(item?.created_at || "").format('Do MMM, h:mm A')}
+          </p>
         </div>
       </div>
     </div>

@@ -34,7 +34,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
           refer_code: "string",
         })
         .then((response) => {
-          console.log("userData", response)
           setUserData({
             user_id: response.data.user_id,
             level: response.data.level,
@@ -52,7 +51,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
           refer_code: "string",
         })
         .then((response) => {
-          console.log("activity", response)
           const activityData = Array.isArray(response.data) ? response.data : [];
 
           const transformedActivities: Activity[] = activityData.map((item: { rewarded_by: { user_id: string }; type: string; referral_code: string; points: number; createdAt: string; }) => ({
