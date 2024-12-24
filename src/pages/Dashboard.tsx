@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (userData?.level) {
-      const totalProgress = levels[userData.level].max - levels[userData.level].min;
+      const totalProgress = userData.max - userData.min;
       const currentProgress = userData.points - levels[userData.level].min;
       if (totalProgress === 0) {
         return setOffset(0)
@@ -22,7 +22,7 @@ const Dashboard = () => {
     } else {
       setOffset(0);
     }
-  }, []);
+  }, [offset]);
 
   return (
     <>
@@ -55,11 +55,11 @@ const Dashboard = () => {
               <div className="flex items-center shrink-0">
                 <span className="text-xs text-fontMain">
                   {
-                    userData?.level ? `${levels[userData?.level]?.min.toString()}` : '0'
+                    userData?.min.toString() || '0'
                   }&nbsp;
                 </span>
                 <span className="text-xs text-[#C5C5C5]">
-                  {`/ ${userData?.level ? `${levels[userData?.level]?.min.toString()}` : '0'}`}
+                  {`/ ${userData?.max.toString() || '0'}`}
                 </span>
               </div>
             </div>
@@ -151,7 +151,7 @@ const Dashboard = () => {
                       />
                     </svg>
                     <div className="absolute text-xs font-bold text-[#FFFFFF] transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                      {(offset / circumference) * 100}%
+                      {((offset / circumference) * 100).toFixed(0)}%
                     </div>
                   </div>
                 </div>

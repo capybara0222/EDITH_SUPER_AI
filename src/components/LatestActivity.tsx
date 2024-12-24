@@ -8,7 +8,7 @@ const LatestActivity = ({ item }: { item: Activity }) => {
         <div className="p-[1px] bg-gradient-to-b from-[#101010] to-[#FFFFFF] via-[#444444] rounded-full">
           <div className="relative p-6 rounded-full bg-gradient-to-b from-[#101010] to-[#585858] via-[#1b1b1b]">
             <img src="/points.png" className="absolute h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-9" />
-            <div className="absolute flex flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+            <div className="absolute flex flex-col items-center justify-center gap-1 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
               <span className="font-bold leading-none text-[#FFFFFF] text-base ">
                 {item?.points || 0}
               </span>
