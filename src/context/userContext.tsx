@@ -48,7 +48,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             level: response.data.level.current_level,
             max: response.data.level.max,
             min: response.data.level.min,
-            points: response.data.points,
+            points: response.data.user.points,
             user_id: response.data.user_id,
           });
         })
