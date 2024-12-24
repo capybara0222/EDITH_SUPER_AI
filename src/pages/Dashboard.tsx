@@ -4,7 +4,7 @@ import { levels } from "../libs/levels";
 import LatestActivity from "../components/LatestActivity";
 
 const Dashboard = () => {
-  const { userProfile, userData, activities } = useUser();
+  const { userProfile, userData, userActivities } = useUser();
   const [offset, setOffset] = useState(0);
   const radius = 40;
   const stroke = 8;
@@ -12,8 +12,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (userData?.level) {
-      const totalProgress = levels[userData.level]?.max - levels[userData.level]?.min;
-      const currentProgress = userData.points - levels[userData.level]?.min;
+      const totalProgress = levels[userData.level].max - levels[userData.level].min;
+      const currentProgress = userData.points - levels[userData.level].min;
+      if (totalProgress === 0) {
+        return setOffset(0)
+      }
       const newOffset = (currentProgress / totalProgress) * circumference;
       setOffset(newOffset);
     } else {
@@ -57,7 +60,7 @@ const Dashboard = () => {
                 </span>
                 <span className="text-xs text-[#C5C5C5]">
                   {`/ ${userData?.level ? `${levels[userData?.level]?.min.toString()}` : '0'}`}
-                  </span>
+                </span>
               </div>
             </div>
           </div>
@@ -89,7 +92,7 @@ const Dashboard = () => {
                 </p>
                 <div className="flex items-center gap-1.5">
                   <span className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    {userData?.referralCount || 0}
+                    {userActivities?.referralCount || 0}
                   </span>
                 </div>
                 <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
@@ -175,7 +178,7 @@ const Dashboard = () => {
               Latest Activity
             </h3>
             <div className="grid grid-cols-1 gap-2.5">
-              {activities?.map((item, index) => <LatestActivity key={index} item={item} />)}
+              {userActivities?.activities.map((item, index) => <LatestActivity key={index} item={item} />)}
             </div>
           </div>
         </div>

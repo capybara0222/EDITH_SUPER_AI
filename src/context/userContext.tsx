@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { retrieveLaunchParams } from "@telegram-apps/sdk"
 import axios from "axios";
-import { Activity, UserContextTypes, UserData, UserProfile } from "../libs/types";
+import { Activity, UserActivities, UserContextTypes, UserData, UserProfile } from "../libs/types";
 
 const UserContext = createContext<UserContextTypes | undefined>(undefined);
 
@@ -15,10 +15,15 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [userData, setUserData] = useState<UserData>({
     user_id: '',
     level: 0,
+    max: 0,
+    min: 0,
     points: 0,
+  });
+  const [userActivities, setUserActivities] = useState<UserActivities>({
+    activities: [],
+    maxReferralDepth: 0,
     referralCount: 0,
   });
-  const [activities, setActivities] = useState<Activity[]>([]);
 
   const fetchUser = async () => {
     if (initData && initData.user) {
@@ -27,6 +32,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         fullname: initData.user.firstName + " " + initData.user.lastName,
         username: initData.user.username,
       });
+      // setUserProfile({
+      //   fullname: "aa",
+      //   username: "aaaaa",
+      // });
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
@@ -34,11 +43,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
           refer_code: "string",
         })
         .then((response) => {
+          console.log(response)
           setUserData({
-            user_id: response.data.user_id,
-            level: response.data.level,
+            level: response.data.level.current_level,
+            max: response.data.level.max,
+            min: response.data.level.min,
             points: response.data.points,
-            referralCount: response.data.referralCode,
+            user_id: response.data.user_id,
           });
         })
         .catch((error) => {
@@ -51,7 +62,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
           refer_code: "string",
         })
         .then((response) => {
-          const activityData = Array.isArray(response.data) ? response.data : [];
+          console.log(response)
+          const activityData = Array.isArray(response.data.activities) ? response.data.activities : [];
 
           const transformedActivities: Activity[] = activityData.map((item: { rewarded_by: { user_id: string }; type: string; referral_code: string; points: number; createdAt: string; }) => ({
             rewarded_user_id: item.rewarded_by.user_id,
@@ -60,7 +72,12 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             points: item.points,
             created_at: item.createdAt,
           }));
-          setActivities(transformedActivities);
+
+          setUserActivities({
+            activities: transformedActivities,
+            maxReferralDepth: response.data.user.maxReferralDepth,
+            referralCount: response.data.user.referralCount,
+          });
         })
         .catch((error) => {
           console.log("Error", error);
@@ -75,7 +92,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ userProfile, userData, activities }}>
+    <UserContext.Provider value={{ userProfile, userData, userActivities }}>
       {children}
     </UserContext.Provider>
   );

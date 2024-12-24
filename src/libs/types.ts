@@ -1,7 +1,7 @@
 export interface UserContextTypes {
   userProfile: UserProfile | undefined;
   userData: UserData | undefined;
-  activities: Activity[] | undefined;
+  userActivities: UserActivities | undefined;
 }
 
 export interface UserProfile {
@@ -12,7 +12,14 @@ export interface UserProfile {
 export interface UserData {
   user_id: string;
   level: number;
+  max: number;
+  min: number;
   points: number;
+}
+
+export interface UserActivities {
+  activities: Activity[];
+  maxReferralDepth: number;
   referralCount: number;
 }
 
