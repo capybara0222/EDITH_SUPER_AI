@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-// import { useUser } from "../context/userContext";
-// import { levels } from "../libs/levels";
-// import LatestActivity from "../components/LatestActivity";
+import { useUser } from "../context/userContext";
+import { levels } from "../libs/levels";
+import LatestActivity from "../components/LatestActivity";
 
 const Dashboard = () => {
-  // const { userProfile, userData, activities } = useUser();
+  const { userProfile, userData, activities } = useUser();
   const [offset, setOffset] = useState(0);
   const radius = 40;
   const stroke = 8;
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
-    // if (userData?.level ) {
-    //   const totalProgress = levels[userData.level].max - levels[userData.level].min;
-    //   const currentProgress = userData.points - levels[userData.level].min;
-    //   const newOffset = (currentProgress / totalProgress) * circumference;
-    //   setOffset(newOffset);
-    // } else {
-    //   setOffset(0);
-    // }
+    if (userData?.level ) {
+      const totalProgress = levels[userData.level].max - levels[userData.level].min;
+      const currentProgress = userData.points - levels[userData.level].min;
+      const newOffset = (currentProgress / totalProgress) * circumference;
+      setOffset(newOffset);
+    } else {
+      setOffset(0);
+    }
     const newOffset = (60 / 100) * circumference;
     setOffset(newOffset);
   }, []);

@@ -51,7 +51,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
           refer_code: "string",
         })
         .then((response) => {
-          const transformedActivities: Activity[] = response.data.map((item: { rewarded_by: { user_id: string }; type: string; referral_code: string; points: number; createdAt: string; }) => ({
+          const transformedActivities: Activity[] = response.data?.map((item: { rewarded_by: { user_id: string }; type: string; referral_code: string; points: number; createdAt: string; }) => ({
             rewarded_user_id: item.rewarded_by.user_id,
             type: item.type,
             referral_code: item.referral_code,
