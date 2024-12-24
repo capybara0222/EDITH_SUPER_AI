@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../context/userContext";
 import { levels } from "../libs/levels";
-import LatestActivity from "../components/LatestActivity";
+// import LatestActivity from "../components/LatestActivity";
 
 const Dashboard = () => {
-  const { userProfile, userData, activities } = useUser();
+  const { userData } = useUser();
   const [offset, setOffset] = useState(0);
   const radius = 40;
   const stroke = 8;
