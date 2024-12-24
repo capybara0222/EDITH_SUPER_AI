@@ -42,7 +42,7 @@ const Dashboard = () => {
               <div className="flex">
                 <img src="/left.png" className="w-auto h-5" />
                 <span className="font-medium text-sm text-[#FFAE4B] leading-none">
-                  {userData?.level}
+                  {/* {userData?.level} */}
                 </span>
                 <img src="/right.png" className="w-auto h-5" />
               </div>
@@ -54,10 +54,10 @@ const Dashboard = () => {
               <div className="flex items-center shrink-0">
                 <span className="text-xs text-fontMain">
                   {
-                    userData?.level ? `${levels[userData.level]?.min.toString()}` : '0'
+                    // userData?.level ? `${levels[userData?.level].min.toString()}` : '0'
                   }
                 </span>
-                <span className="text-xs text-[#C5C5C5]">{`/ ${userData?.level ? `${levels[userData.level]?.min.toString()}` : '0'}`}</span>
+                {/* <span className="text-xs text-[#C5C5C5]">{`/ ${userData?.level ? `${levels[userData?.level].min.toString()}` : '0'}`}</span> */}
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ const Dashboard = () => {
                 </p>
                 <div className="flex items-center gap-1.5">
                   <span className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    {userData?.points}
+                    {/* {userData?.points} */}
                   </span>
                   <img src="/coin.png" className="w-5 h-5" />
                 </div>
@@ -89,7 +89,7 @@ const Dashboard = () => {
                 </p>
                 <div className="flex items-center gap-1.5">
                   <span className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    {userData?.referralCount}
+                    {/* {userData?.referralCount} */}
                   </span>
                 </div>
                 <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
@@ -100,7 +100,7 @@ const Dashboard = () => {
                     Current Level
                   </p>
                   <p className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    {userData?.level}
+                    {/* {userData?.level} */}
                   </p>
                 </div>
                 <div className="p-3 pl-0">
@@ -148,7 +148,7 @@ const Dashboard = () => {
                       />
                     </svg>
                     <div className="absolute text-xs font-bold text-[#FFFFFF] transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                      {(offset / circumference) * 100}%
+                      {/* {(offset / circumference) * 100}% */}
                     </div>
                   </div>
                 </div>
@@ -160,11 +160,11 @@ const Dashboard = () => {
                     Rank Status
                   </p>
                   <p className="font-bold text-[#FFFFFF] text-xl leading-none">
-                    {userData?.level ? `${levels[userData.level]?.name}` : `${levels[0]?.name}`}
+                    {/* {userData?.level ? `${levels[userData.level].name}` : `${levels[0].name}`} */}
                   </p>
                 </div>
                 <div className="absolute top-0 right-3">
-                  <img src={`/levels/${userData?.level ? `${levels[userData.level]?.name}` : `${levels[0]?.name}`}.png`} className="w-[60px] h-auto" />
+                  {/* <img src={`/levels/${userData?.level ? `${levels[userData.level].name}` : `${levels[0].name}`}.png`} className="w-[60px] h-auto" /> */}
                 </div>
                 <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-20 h-8 bg-[#FFFFFF] blur-2xl" />
               </div>
