@@ -12,8 +12,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (userData?.level ) {
-      const totalProgress = levels[userData.level].max - levels[userData.level].min;
-      const currentProgress = userData.points - levels[userData.level].min;
+      const totalProgress = levels[userData.level]?.max - levels[userData.level]?.min;
+      const currentProgress = userData.points - levels[userData.level]?.min;
       const newOffset = (currentProgress / totalProgress) * circumference;
       setOffset(newOffset);
     } else {
