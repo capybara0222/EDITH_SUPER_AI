@@ -1,12 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { retrieveLaunchParams } from "@telegram-apps/sdk"
+// import { retrieveLaunchParams } from "@telegram-apps/sdk"
 import axios from "axios";
 import { Activity, UserActivities, UserContextTypes, UserData, UserProfile } from "../libs/types";
 
 const UserContext = createContext<UserContextTypes | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const { initData } = retrieveLaunchParams();
+  // const { initData } = retrieveLaunchParams();
 
   const [userProfile, setUserProfile] = useState<UserProfile>({
     fullname: "",
@@ -26,21 +26,21 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const fetchUser = async () => {
-    if (initData && initData.user) {
-      console.log(initData.user);
+    // if (initData && initData.user) {
+    //   console.log(initData.user);
+    //   setUserProfile({
+    //     fullname: initData.user.firstName + " " + initData.user.lastName,
+    //     username: initData.user.username,
+    //   });
       setUserProfile({
-        fullname: initData.user.firstName + " " + initData.user.lastName,
-        username: initData.user.username,
+        fullname: "aa",
+        username: "aaaaa",
       });
-      // setUserProfile({
-      //   fullname: "aa",
-      //   username: "aaaaa",
-      // });
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
-          user_id: initData.user.id,
-          // user_id: 7902084350,
+          // user_id: initData.user.id,
+          user_id: 7902084350,
           refer_code: "string",
         })
         .then((response) => {
@@ -59,8 +59,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
-          user_id: initData.user.id,
-          // user_id: 7902084350,
+          // user_id: initData.user.id,
+          user_id: 7902084350,
           refer_code: "string",
         })
         .then((response) => {
@@ -84,9 +84,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         .catch((error) => {
           console.log("Error", error);
         });
-    } else {
-      console.log("User data is not available");
-    }
+    // } else {
+    //   console.log("User data is not available");
+    // }
   };
 
   useEffect(() => {

@@ -50,7 +50,7 @@ const Dashboard = () => {
             </div>
             <div className="flex items-center justify-start w-full gap-2">
               <div className="relative w-full max-w-[150px] bg-[#FFFFFF29] h-1.5 rounded-full">
-                <div className="absolute top-0 left-0 h-1.5 bg-[#FFFFFF] rounded-full" style={{ width: `${(offset/circumference) * 100}%`}}></div>
+                <div className="absolute top-0 left-0 h-1.5 bg-[#FFFFFF] rounded-full" style={{ width: `${(offset / circumference) * 100}%` }}></div>
               </div>
               <div className="flex items-center shrink-0">
                 <span className="text-xs text-fontMain">
@@ -178,7 +178,12 @@ const Dashboard = () => {
               Latest Activity
             </h3>
             <div className="grid grid-cols-1 gap-2.5">
-              {userActivities?.activities.map((item, index) => <LatestActivity key={index} item={item} />)}
+              {userActivities?.activities
+                .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+                .slice(0, 5)
+                .map((item, index) =>
+                  <LatestActivity key={index} item={item} />
+                )}
             </div>
           </div>
         </div>

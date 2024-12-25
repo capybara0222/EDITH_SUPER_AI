@@ -1,6 +1,10 @@
 import { PiCopyFill } from "react-icons/pi"
+import { useUser } from "../context/userContext"
+import Activity from "../components/Activity";
 
 const Friends = () => {
+  const { userActivities, userData } = useUser();
+
   return (
     <main className="w-full min-h-screen bg-bgMain font-aeonik text-[#878787] homeBackground">
       <div className="flex flex-col p-5">
@@ -10,18 +14,22 @@ const Friends = () => {
             <div className="grid grid-cols-3 gap-[5px]">
               <div className="flex flex-col w-full gap-2 p-3 border border-[#262626] rounded-xl bg-[#010101]">
                 <span className="text-xs">Total Referrals</span>
-                <span className="text-xl font-bold text-[#FFFFFF]">20</span>
+                <span className="text-xl font-bold text-[#FFFFFF]">
+                  {userActivities?.referralCount || 0}
+                </span>
               </div>
               <div className="flex flex-col w-full gap-2 p-3 border border-[#262626] rounded-xl bg-[#010101]">
                 <span className="text-xs">Total Earned</span>
                 <div className="flex items-center justify-start gap-2">
-                  <span className="text-xl font-bold text-[#FFFFFF]">2000</span>
+                  <span className="text-xl font-bold text-[#FFFFFF]">
+                    {userData?.points || 0}
+                  </span>
                   <img src="/ether.png" className="w-[18px] h-[18px]" />
                 </div>
               </div>
               <div className="flex flex-col w-full gap-2 p-3 border border-[#262626] rounded-xl bg-[#010101]">
                 <span className="text-xs">Success Rate</span>
-                <span className="text-xl font-bold text-[#FFFFFF]">50%</span>
+                <span className="text-xl font-bold text-[#FFFFFF]">100%</span>
               </div>
             </div>
             <div className="flex flex-col gap-3">
@@ -70,240 +78,11 @@ const Friends = () => {
                 </div>
               </div>
               <div className="p-4 flex flex-col items-stretch gap-4">
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username1
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username2
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      -
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username3
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username4
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username5
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      -
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full ">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username6
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username7
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username8
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username9
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username10
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      -
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username11
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username12
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username13
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      -
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full">
-                  <div className="basis-[47%] text-sm text-left font-medium text-[#FFFFFF]">
-                    username14
-                  </div>
-                  <div className="basis-[40%] text-sm text-left font-medium text-[#FFFFFF]">
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-xs text-[#878787] ">Completed</p>
-                      <div className="w-2.5 h-2.5 rounded-full border-2 border-[#07D7C2]"></div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-left font-medium text-[#FFFFFF] flex-1">
-                    <div className="flex items-center justify-start text-xs gap-1">
-                      <span className="text-[#FFFFFF] text-xs font-medium">100</span>
-                      <img src="/ether.png" className="h-[11px] w-[11px]" />
-                    </div>
-                  </div>
-                </div>
+                {
+                  userActivities?.activities.map((item, index) =>
+                    <Activity key={index} item={item} />
+                  )
+                }
               </div>
             </div>
           </div>
