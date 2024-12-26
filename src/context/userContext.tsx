@@ -39,9 +39,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       //   fullname: "aa",
       //   username: "aaaaa",
       // });
+      console.log(location);
       const queryParams = new URLSearchParams(location.search);
+      console.log("query", queryParams)
       const refer_code = queryParams.get('ref') || '';
-      console.log(refer_code)
+      console.log("refer_code", refer_code)
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
