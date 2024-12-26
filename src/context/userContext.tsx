@@ -30,7 +30,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const fetchUser = async () => {
     if (initData && initData.user) {
-      console.log(startParam);
       setUserProfile({
         fullname: initData.user.firstName + " " + initData.user.lastName,
         username: initData.user.username,
@@ -101,8 +100,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
+    console.log(startParam)
     fetchUser();
-  }, [location.search]);
+  }, [startParam]);
 
   return (
     <UserContext.Provider value={{ userProfile, userData, userActivities }}>
