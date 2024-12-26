@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-// import { retrieveLaunchParams } from "@telegram-apps/sdk"
+import { retrieveLaunchParams } from "@telegram-apps/sdk"
 import axios from "axios";
 import { Activity, UserActivities, UserContextTypes, UserData, UserProfile } from "../libs/types";
 import { useLocation } from "react-router-dom";
