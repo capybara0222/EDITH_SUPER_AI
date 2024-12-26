@@ -40,11 +40,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       // });
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, JSON.stringify({
           user_id: initData.user.id,
           // user_id: 7902084350,
           startParam,
-        })
+        }))
         .then((response) => {
           console.log(startParam)
           console.log(response)
@@ -61,11 +61,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, JSON.stringify({
           user_id: initData.user.id,
           // user_id: 7902084350,
           startParam,
-        })
+        }))
         .then((response) => {
           console.log(response)
           const activityData = Array.isArray(response.data.activities) ? response.data.activities : [];
