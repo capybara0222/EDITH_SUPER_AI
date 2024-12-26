@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { retrieveLaunchParams } from "@telegram-apps/sdk"
+// import { retrieveLaunchParams } from "@telegram-apps/sdk"
 import axios from "axios";
 import { Activity, UserActivities, UserContextTypes, UserData, UserProfile } from "../libs/types";
 import { useLocation } from "react-router-dom";
@@ -39,9 +39,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       //   fullname: "aa",
       //   username: "aaaaa",
       // });
-
       const queryParams = new URLSearchParams(location.search);
       const refer_code = queryParams.get('ref') || '';
+      console.log(refer_code)
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
@@ -51,7 +51,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         })
         .then((response) => {
           console.log('refer', refer_code)
-          console.log('user', initData.user?.id)
           console.log(response)
           setUserData({
             level: response.data.level.current_level,
