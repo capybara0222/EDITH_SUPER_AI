@@ -1,15 +1,22 @@
-import { PiCopyFill } from "react-icons/pi"
+import { PiCheckSquare, PiCopyFill } from "react-icons/pi"
 import { useUser } from "../context/userContext"
 import Activity from "../components/Activity";
 import { useEffect, useState } from "react";
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const Friends = () => {
   const { userActivities, userData } = useUser();
-  const [referralCode, setReferralCode] = useState("");
+  const [referralCode, setReferralCode] = useState<string>("");
+  const [copyStatus, setCopyStatus] = useState<boolean>(false);
+
+  const handleCopyClick = async () => {
+    setCopyStatus(true);
+    setTimeout(() => setCopyStatus(false), 2000);
+  }
 
   useEffect(() =>
     setReferralCode(`https://t.me/edithuser_bot/edithtest_app?ref=${userActivities?.referralCode}`)
-  , [])
+    , [])
 
   return (
     <main className="w-full min-h-screen bg-bgMain font-aeonik text-[#878787] homeBackground">
@@ -44,21 +51,22 @@ const Friends = () => {
                 <div className="relative flex-1 ">
                   <input
                     type="text"
-                    className="border border-[#FFFFFF36] p-1.5 w-full rounded-lg bg-[#FFFFFF]/15 h-[30px] text-xs text-[#FFFFFF]/50"
-                    
+                    className="border border-[#FFFFFF36] p-1.5 w-full rounded-lg bg-[#FFFFFF]/15 h-[30px] text-xs text-[#FFFFFF]/50 pr-7"
                     value={referralCode}
                     disabled
                   />
-                  <button
-                    className="h-[18px] w-[18px] border border-[#FFFFFF1F] bg-[#FFFFFF1F] absolute top-1/2 -translate-y-1/2 right-1.5 flex items-center justify-center rounded-[4px] hover:border-[#FFFFFF1F] focus:outline-none"
-                    onClick={() => navigator.clipboard.writeText(referralCode)}
-                  >
-                    <PiCopyFill className="text-xs text-[#FFFFFF]" />
-                  </button>
+                  <CopyToClipboard text={referralCode} onCopy={handleCopyClick}>
+                    <button
+                      className="h-[18px] w-[18px] border border-[#FFFFFF1F] bg-[#FFFFFF1F] absolute top-1/2 -translate-y-1/2 right-1.5 flex items-center justify-center rounded-[4px] hover:border-[#FFFFFF1F] focus:outline-none"
+                      onClick={handleCopyClick}
+                    >
+                      {copyStatus ? <PiCheckSquare className="text-xs text-[#FFFFFF]" /> : <PiCopyFill className="text-xs text-[#FFFFFF]" />}
+                    </button>
+                  </CopyToClipboard>
                 </div>
-                <button className="bg-[#FFFFFF] border border-[#FFFFFF]/20 text-[#010101] font-medium text-sm h-7 w-[65px] hover:border-[#FFFFFF]/20 focus:outline-none">
+                {/* <button className="bg-[#FFFFFF] border border-[#FFFFFF]/20 text-[#010101] font-medium text-sm h-7 w-[65px] hover:border-[#FFFFFF]/20 focus:outline-none">
                   Share
-                </button>
+                </button> */}
               </div>
               <div className="flex items-center justify-start text-xs">
                 Get&nbsp;
