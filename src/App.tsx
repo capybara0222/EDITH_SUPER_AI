@@ -9,8 +9,8 @@ import { UserProvider } from './context/userContext'
 function App() {
 
   return (
-    <UserProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <UserProvider>
         <Routes>
           <Route path='/' element={<Layouts />}>
             <Route path="" element={<Navigate to="/dashboard" />} />
@@ -19,8 +19,8 @@ function App() {
             <Route path='tasks' element={<Tasks />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </UserProvider>
+      </UserProvider>
+    </BrowserRouter>
   )
 }
 
