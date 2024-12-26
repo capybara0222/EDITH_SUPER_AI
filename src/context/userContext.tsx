@@ -2,10 +2,12 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { retrieveLaunchParams } from "@telegram-apps/sdk"
 import axios from "axios";
 import { Activity, UserActivities, UserContextTypes, UserData, UserProfile } from "../libs/types";
+import { useLocation } from "react-router-dom";
 
 const UserContext = createContext<UserContextTypes | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
   const { initData } = retrieveLaunchParams();
 
   const [userProfile, setUserProfile] = useState<UserProfile>({
@@ -20,6 +22,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     points: 0,
   });
   const [userActivities, setUserActivities] = useState<UserActivities>({
+    referralCode: "",
     activities: [],
     maxReferralDepth: 0,
     referralCount: 0,
@@ -37,11 +40,14 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       //   username: "aaaaa",
       // });
 
+      const queryParams = new URLSearchParams(location.search);
+      const refer_code = queryParams.get('ref') || '';
+
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
           user_id: initData.user.id,
           // user_id: 7902084350,
-          refer_code: "string",
+          refer_code,
         })
         .then((response) => {
           console.log(response)
@@ -61,7 +67,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
           user_id: initData.user.id,
           // user_id: 7902084350,
-          refer_code: "string",
+          refer_code,
         })
         .then((response) => {
           console.log(response)
@@ -76,6 +82,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
           }));
 
           setUserActivities({
+            referralCode: response.data.user.referral_code,
             activities: transformedActivities,
             maxReferralDepth: response.data.user.maxReferralDepth,
             referralCount: response.data.user.referralCount,
@@ -91,7 +98,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [location.search]);
 
   return (
     <UserContext.Provider value={{ userProfile, userData, userActivities }}>

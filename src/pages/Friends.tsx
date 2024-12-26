@@ -8,7 +8,7 @@ const Friends = () => {
   const [referralCode, setReferralCode] = useState("");
 
   useEffect(() =>
-    setReferralCode(`https://edith.com/ref=${userData?.user_id}`)
+    setReferralCode(`https://t.me/edithuser_bot/edithtest_app?ref=${userActivities?.referralCode}`)
   , [])
 
   return (
@@ -45,7 +45,7 @@ const Friends = () => {
                   <input
                     type="text"
                     className="border border-[#FFFFFF36] p-1.5 w-full rounded-lg bg-[#FFFFFF]/15 h-[30px] text-xs text-[#FFFFFF]/50"
-                    placeholder="EDITH.com/ref=1234qwerty5678"
+                    
                     value={referralCode}
                     disabled
                   />

@@ -19,6 +19,7 @@ export interface UserData {
 
 export interface UserActivities {
   activities: Activity[];
+  referralCode: string;
   maxReferralDepth: number;
   referralCount: number;
 }
