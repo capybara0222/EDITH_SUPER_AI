@@ -38,23 +38,15 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       //   fullname: "aa",
       //   username: "aaaaa",
       // });
-      console.log("startParam", startParam)
-
-      console.log(initData)
-      console.log(location);
-      const queryParams = new URLSearchParams(location.search);
-      console.log("query", queryParams)
-      const refer_code = queryParams.get('ref') || '';
-      console.log("refer_code", refer_code)
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
           user_id: initData.user.id,
           // user_id: 7902084350,
-          refer_code,
+          startParam,
         })
         .then((response) => {
-          console.log('refer', refer_code)
+          console.log(startParam)
           console.log(response)
           setUserData({
             level: response.data.level.current_level,
@@ -72,7 +64,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
           user_id: initData.user.id,
           // user_id: 7902084350,
-          refer_code,
+          startParam,
         })
         .then((response) => {
           console.log(response)
