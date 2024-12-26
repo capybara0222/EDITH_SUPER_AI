@@ -16,7 +16,7 @@ const Friends = () => {
 
   useEffect(() =>
     setReferralCode(`https://t.me/edithuser_bot/edithtest_app?ref=${userActivities?.referralCode}`)
-    , [])
+    , [userActivities?.referralCode])
 
   return (
     <main className="w-full min-h-screen bg-bgMain font-aeonik text-[#878787] homeBackground">
