@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-// import { retrieveLaunchParams } from "@telegram-apps/sdk"
+import { retrieveLaunchParams } from "@telegram-apps/sdk"
 import axios from "axios";
 import { Activity, UserActivities, UserContextTypes, UserData, UserProfile } from "../libs/types";
 import { useLocation } from "react-router-dom";
@@ -8,7 +8,7 @@ const UserContext = createContext<UserContextTypes | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  // const { initData } = retrieveLaunchParams();
+  const { initData } = retrieveLaunchParams();
 
   const [userProfile, setUserProfile] = useState<UserProfile>({
     fullname: "",
@@ -29,27 +29,29 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const fetchUser = async () => {
-    // if (initData && initData.user) {
-    //   console.log(initData.user);
-    //   setUserProfile({
-    //     fullname: initData.user.firstName + " " + initData.user.lastName,
-    //     username: initData.user.username,
-    //   });
+    if (initData && initData.user) {
+      console.log(initData.user);
       setUserProfile({
-        fullname: "aa",
-        username: "aaaaa",
+        fullname: initData.user.firstName + " " + initData.user.lastName,
+        username: initData.user.username,
       });
+      // setUserProfile({
+      //   fullname: "aa",
+      //   username: "aaaaa",
+      // });
 
       const queryParams = new URLSearchParams(location.search);
       const refer_code = queryParams.get('ref') || '';
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
-          // user_id: initData.user.id,
-          user_id: 7902084350,
+          user_id: initData.user.id,
+          // user_id: 7902084350,
           refer_code,
         })
         .then((response) => {
+          console.log('refer', refer_code)
+          console.log('user', initData.user?.id)
           console.log(response)
           setUserData({
             level: response.data.level.current_level,
@@ -65,8 +67,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
-          // user_id: initData.user.id,
-          user_id: 7902084350,
+          user_id: initData.user.id,
+          // user_id: 7902084350,
           refer_code,
         })
         .then((response) => {
@@ -91,9 +93,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         .catch((error) => {
           console.log("Error", error);
         });
-    // } else {
-    //   console.log("User data is not available");
-    // }
+    } else {
+      console.log("User data is not available");
+    }
   };
 
   useEffect(() => {
