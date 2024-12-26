@@ -1,9 +1,15 @@
 import { PiCopyFill } from "react-icons/pi"
 import { useUser } from "../context/userContext"
 import Activity from "../components/Activity";
+import { useEffect, useState } from "react";
 
 const Friends = () => {
   const { userActivities, userData } = useUser();
+  const [referralCode, setReferralCode] = useState("");
+
+  useEffect(() =>
+    setReferralCode(`https://edith.com/ref=${userData?.user_id}`)
+  , [])
 
   return (
     <main className="w-full min-h-screen bg-bgMain font-aeonik text-[#878787] homeBackground">
@@ -34,15 +40,19 @@ const Friends = () => {
             </div>
             <div className="flex flex-col gap-3">
               <span className="text-xs">Your referral link</span>
-              <div className="flex justify-between items-center gap-2">
+              <div className="flex items-center justify-between gap-2">
                 <div className="relative flex-1 ">
                   <input
                     type="text"
                     className="border border-[#FFFFFF36] p-1.5 w-full rounded-lg bg-[#FFFFFF]/15 h-[30px] text-xs text-[#FFFFFF]/50"
                     placeholder="EDITH.com/ref=1234qwerty5678"
+                    value={referralCode}
                     disabled
                   />
-                  <button className="h-[18px] w-[18px] border border-[#FFFFFF1F] bg-[#FFFFFF1F] absolute top-1/2 -translate-y-1/2 right-1.5 flex items-center justify-center rounded-[4px] hover:border-[#FFFFFF1F] focus:outline-none">
+                  <button
+                    className="h-[18px] w-[18px] border border-[#FFFFFF1F] bg-[#FFFFFF1F] absolute top-1/2 -translate-y-1/2 right-1.5 flex items-center justify-center rounded-[4px] hover:border-[#FFFFFF1F] focus:outline-none"
+                    onClick={() => navigator.clipboard.writeText(referralCode)}
+                  >
                     <PiCopyFill className="text-xs text-[#FFFFFF]" />
                   </button>
                 </div>
@@ -73,11 +83,11 @@ const Friends = () => {
                 <div className="basis-[40%] text-sm text-left">
                   Status
                 </div>
-                <div className="text-sm text-left flex-1">
+                <div className="flex-1 text-sm text-left">
                   Rewards
                 </div>
               </div>
-              <div className="p-4 flex flex-col items-stretch gap-4">
+              <div className="flex flex-col items-stretch gap-4 p-4">
                 {
                   userActivities?.activities.map((item, index) =>
                     <Activity key={index} item={item} />
