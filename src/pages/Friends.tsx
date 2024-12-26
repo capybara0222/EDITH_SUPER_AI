@@ -15,7 +15,7 @@ const Friends = () => {
   }
 
   useEffect(() =>
-    setReferralCode(`https://t.me/edithuser_bot/edithtest_app?ref=${userActivities?.referralCode}`)
+    setReferralCode(`https://t.me/edithuser_bot/edithtest_app?start=${userActivities?.referralCode}`)
     , [userActivities?.referralCode])
 
   return (

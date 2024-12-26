@@ -8,7 +8,7 @@ const UserContext = createContext<UserContextTypes | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const { initData } = retrieveLaunchParams();
+  const { initData, startParam } = retrieveLaunchParams();
 
   const [userProfile, setUserProfile] = useState<UserProfile>({
     fullname: "",
@@ -30,7 +30,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const fetchUser = async () => {
     if (initData && initData.user) {
-      console.log(initData.user);
+      console.log(startParam);
       setUserProfile({
         fullname: initData.user.firstName + " " + initData.user.lastName,
         username: initData.user.username,
@@ -39,6 +39,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       //   fullname: "aa",
       //   username: "aaaaa",
       // });
+      console.log(initData)
       console.log(location);
       const queryParams = new URLSearchParams(location.search);
       console.log("query", queryParams)
