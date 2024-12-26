@@ -38,6 +38,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       //   fullname: "aa",
       //   username: "aaaaa",
       // });
+      console.log("startParam", startParam)
+
       console.log(initData)
       console.log(location);
       const queryParams = new URLSearchParams(location.search);
@@ -100,7 +102,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    console.log(startParam)
     fetchUser();
   }, [startParam]);
 
