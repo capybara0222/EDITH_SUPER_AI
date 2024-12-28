@@ -42,7 +42,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       })
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data)
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {data})
         .then((response) => {
           console.log(response)
           setUserData({
@@ -58,7 +58,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, data)
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {data})
         .then((response) => {
           console.log("user", initData.user?.id, typeof initData.user?.id);
           console.log('start', startParam, typeof startParam);
