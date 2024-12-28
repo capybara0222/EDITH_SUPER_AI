@@ -39,10 +39,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
-          user_id: initData.user.id,
-          refer_code: startParam,
-          // user_id: 7902084350,
-          // refer_code: ""
+          "user_id": initData.user.id,
+          "refer_code": startParam,
+          // "user_id": "7902084350",
+          // "refer_code": "92525AC001C7"
         })
         .then((response) => {
           console.log(response)
@@ -60,10 +60,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
-          user_id: initData.user.id,
-          refer_code: startParam,
-          // user_id: 7902084350,
-          // refer_code: ""
+          "user_id": initData.user.id,
+          "refer_code": startParam,
+          // "user_id": "7902084350",
+          // "refer_code": "92525AC001C7"
         })
         .then((response) => {
           console.log(response)
