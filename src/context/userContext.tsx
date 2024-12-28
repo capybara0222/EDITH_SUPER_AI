@@ -2,12 +2,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { retrieveLaunchParams } from "@telegram-apps/sdk"
 import axios from "axios";
 import { Activity, UserActivities, UserContextTypes, UserData, UserProfile } from "../libs/types";
-import { useLocation } from "react-router-dom";
 
 const UserContext = createContext<UserContextTypes | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const location = useLocation();
   const { initData, startParam } = retrieveLaunchParams();
 
   const [userProfile, setUserProfile] = useState<UserProfile>({
