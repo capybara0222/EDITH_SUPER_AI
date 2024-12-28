@@ -60,12 +60,14 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
-          "user_id": initData.user.id,
+          "user_id": `${initData.user.id}`,
           "refer_code": startParam,
           // "user_id": "7902084350",
           // "refer_code": "92525AC001C7"
         })
         .then((response) => {
+          console.log("user", initData.user?.id, typeof initData.user?.id);
+          console.log('start', startParam, typeof startParam);
           console.log(response)
           const activityData = Array.isArray(response.data.activities) ? response.data.activities : [];
 
