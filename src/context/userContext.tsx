@@ -41,7 +41,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, JSON.stringify({
           user_id: initData.user.id,
           // user_id: 7902084350,
-          startParam,
+          refer_code: startParam,
         }))
         .then((response) => {
           console.log(startParam)
@@ -62,7 +62,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, JSON.stringify({
           user_id: initData.user.id,
           // user_id: 7902084350,
-          startParam,
+          refer_code: startParam,
         }))
         .then((response) => {
           console.log(response)
