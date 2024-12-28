@@ -2,11 +2,11 @@ import { NavLink } from "react-router-dom"
 
 const Tabs = () => {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 flex justify-center h-20 font-aeonik z-50">
+    <footer className="fixed bottom-0 left-0 right-0 z-50 flex justify-center h-20 font-aeonik">
       <div className="w-full max-w-screen-md px-5 border-t-2 border-borderMain bg-[#131313] flex items-center justify-between">
         <NavLink to={'/dashboard'}>
           {({ isActive }) => (
-            <button className="flex flex-col items-center justify-center gap-2 border-none focus:outline-none relative group px-5">
+            <button className="relative flex flex-col items-center justify-center gap-2 px-5 border-none focus:outline-none group">
               <div className={`${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} bg-[#FFFFFF] blur-md w-4 h-4 transition-opacity duration-200`}></div>
               <svg
                 width="16"
@@ -31,7 +31,7 @@ const Tabs = () => {
         </NavLink>
         <NavLink to={'/friends'}>
           {({ isActive }) => (
-            <button className="flex flex-col items-center justify-center gap-2 border-none focus:outline-none relative group px-5">
+            <button className="relative flex flex-col items-center justify-center gap-2 px-5 border-none focus:outline-none group">
               <div className={`${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} bg-[#FFFFFF] blur-md w-4 h-4 transition-opacity duration-200`}></div>
               <svg
                 width="23"
@@ -58,9 +58,9 @@ const Tabs = () => {
             </button>
           )}
         </NavLink>
-        <NavLink to={'/tasks'}>
+        <NavLink to={''}>
           {({ isActive }) => (
-            <button className="flex flex-col items-center justify-center gap-2 border-none focus:outline-none relative group px-5">
+            <button className="relative flex flex-col items-center justify-center gap-2 px-5 border-none focus:outline-none group">
               <div className={`${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} bg-[#FFFFFF] blur-md w-4 h-4 transition-opacity duration-200`}></div>
               <svg
                 width="18"
