@@ -36,14 +36,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       //   fullname: "aa",
       //   username: "aaaaa",
       // });
+      let data = JSON.stringify({
+        "user_id": initData.user.id,
+        "refer_code": `${startParam}` || ""
+      })
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
-          "user_id": `${initData.user.id}`,
-          "refer_code": `${startParam}`,
-          // "user_id": "my",
-          // "refer_code": "92525AC001C7"
-        })
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data)
         .then((response) => {
           console.log(response)
           setUserData({
@@ -59,12 +58,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
-          "user_id": `${initData.user.id}`,
-          "refer_code": startParam,
-          // "user_id": "7902084350",
-          // "refer_code": "92525AC001C7"
-        })
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, data)
         .then((response) => {
           console.log("user", initData.user?.id, typeof initData.user?.id);
           console.log('start', startParam, typeof startParam);
