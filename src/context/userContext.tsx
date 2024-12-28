@@ -39,10 +39,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
-          // "user_id": initData.user.id,
-          // "refer_code": startParam,
-          "user_id": "my",
-          "refer_code": "92525AC001C7"
+          "user_id": `${initData.user.id}`,
+          "refer_code": `${startParam}`,
+          // "user_id": "my",
+          // "refer_code": "92525AC001C7"
         })
         .then((response) => {
           console.log(response)
