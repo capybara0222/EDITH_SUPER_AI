@@ -38,13 +38,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       // });
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, JSON.stringify({
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
           user_id: initData.user.id,
-          // user_id: 7902084350,
           refer_code: startParam,
-        }))
+          // user_id: 7902084350,
+          // refer_code: ""
+        })
         .then((response) => {
-          console.log(startParam)
           console.log(response)
           setUserData({
             level: response.data.level.current_level,
@@ -59,11 +59,12 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
       await axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, JSON.stringify({
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/user/activity`, {
           user_id: initData.user.id,
-          // user_id: 7902084350,
           refer_code: startParam,
-        }))
+          // user_id: 7902084350,
+          // refer_code: ""
+        })
         .then((response) => {
           console.log(response)
           const activityData = Array.isArray(response.data.activities) ? response.data.activities : [];
