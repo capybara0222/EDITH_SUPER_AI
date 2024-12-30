@@ -70,7 +70,7 @@ const Friends = () => {
               </div>
               <div className="flex items-center justify-start text-xs">
                 Get&nbsp;
-                <span className="text-[#FFFFFF] text-xs font-medium">100</span>
+                <span className="text-[#FFFFFF] text-xs font-medium">25</span>
                 &nbsp;
                 <img src="/ether.png" className="h-[11px] w-[11px]" />
                 &nbsp;for each invited user
