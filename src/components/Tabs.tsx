@@ -58,7 +58,7 @@ const Tabs = () => {
             </button>
           )}
         </NavLink>
-        {/* <NavLink to={''}>
+        <NavLink to={''}>
           {({ isActive }) => (
             <button className="relative flex flex-col items-center justify-center gap-2 px-5 border-none focus:outline-none group">
               <div className={`${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} bg-[#FFFFFF] blur-md w-4 h-4 transition-opacity duration-200`}></div>
@@ -81,8 +81,7 @@ const Tabs = () => {
               <div className={`${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} absolute -bottom-3 translate-y-full left-0 w-full h-2 bg-[#FFFFFF] blur-lg`}></div>
             </button>
           )}
-        </NavLink> */}
-
+        </NavLink>
       </div>
     </footer>
   )

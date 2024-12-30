@@ -64,9 +64,9 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <button className="w-8 h-8 border-[#3a3a3a] bg-[#202020] flex items-center justify-center shrink-0 focus:outline-none hover:border-[#3a3a3a]">
+          {/* <button className="w-8 h-8 border-[#3a3a3a] bg-[#202020] flex items-center justify-center shrink-0 focus:outline-none hover:border-[#3a3a3a]">
             <img src="/setting.png" className="w-4 h-4" />
-          </button>
+          </button> */}
         </div>
       </header>
       <main className="w-full min-h-screen bg-bgMain font-aeonik homeBackground">
