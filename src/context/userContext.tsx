@@ -36,10 +36,12 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       //   fullname: "aa",
       //   username: "aaaaa",
       // });
-      let data = {
+      const data = {
         "user_id": initData.user.id,
         "refer_code": startParam !== undefined ? startParam : ""
       }
+
+      console.log(initData, "initData");
 
       await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/api/user`, data)
@@ -90,6 +92,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     fetchUser();
+
   }, [startParam]);
 
   return (
