@@ -11,6 +11,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [userProfile, setUserProfile] = useState<UserProfile>({
     fullname: "",
     username: "",
+    photoUrl: "",
   });
   const [userData, setUserData] = useState<UserData>({
     user_id: '',
@@ -31,6 +32,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       setUserProfile({
         fullname: initData.user.firstName + " " + initData.user.lastName,
         username: initData.user.username,
+        photoUrl: initData.user?.photoUrl
       });
       // setUserProfile({
       //   fullname: "aa",

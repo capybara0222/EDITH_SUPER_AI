@@ -30,7 +30,7 @@ const Dashboard = () => {
         <div className="flex items-center justify-between w-full max-w-screen-md gap-2 px-5 py-4 border-b-2 border-borderMain bg-bgMain">
           <div className="shrink-0">
             <img
-              src="/avatar.png"
+              src={`${userProfile?.photoUrl || '/avatar.png'}`}
               alt={`${userProfile?.fullname || ""}`}
               className="w-12 h-12 rounded-full"
             />

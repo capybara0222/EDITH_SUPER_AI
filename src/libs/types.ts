@@ -7,6 +7,7 @@ export interface UserContextTypes {
 export interface UserProfile {
   fullname: string;
   username?: string;
+  photoUrl?: string;
 }
 
 export interface UserData {
